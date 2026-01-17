@@ -36,7 +36,7 @@ function RootComponent() {
           </aside>
 
           <main className="flex-1 p-6 bg-white">
-            <div className="flex justify-end">
+            <div className="flex justify-end py-5">
               <Link to="/addblog">
                 <Button variant="default">Add New Blog</Button>
               </Link>

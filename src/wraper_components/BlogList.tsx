@@ -59,10 +59,13 @@ const BlogList: React.FC = () => {
         <div className="flex w-full max-w-md flex-col gap-6">
           <ItemGroup className="gap-4">
             {blogs?.map((blog) => (
-              <Item key={blog.title} variant="outline" asChild role="listitem">
+              <Item key={blog.id} variant="outline" asChild role="listitem">
                 <Link to="/$blogId" params={{ blogId: `${blog.id}` }}>
                   <ItemContent>
-                    <ItemTitle className="line-clamp-1">{blog.title}</ItemTitle>
+                    <ItemTitle className="line-clamp-1">
+                      {blog.category}
+                    </ItemTitle>
+                    <ItemDescription>{blog.title}</ItemDescription>
                     <ItemDescription>{blog.description}</ItemDescription>
                   </ItemContent>
                   <ItemContent className="flex-none text-center">

@@ -24,18 +24,18 @@ function RouteComponent() {
     <div>
       <ItemGroup>
         <ItemContent>
-          <ItemTitle>
-            {blog?.title} {blogId}
-          </ItemTitle>
-          <ItemDescription>{blog?.content}</ItemDescription>
           <ItemDescription>
+            <img src={blog?.coverImage} alt={blog?.title} />
+          </ItemDescription>
+          <ItemTitle>{blog?.title}</ItemTitle>
+
+          <ItemDescription>
+            {blog?.category} |{" "}
             {new Date(blog!.date).toLocaleDateString("en-US")}
           </ItemDescription>
           <ItemDescription>{blog?.category.join(", ")}</ItemDescription>
           <ItemDescription>{blog?.description}</ItemDescription>
-          <ItemDescription>
-            <img src={blog?.coverImage} alt={blog?.title} />
-          </ItemDescription>
+          <ItemDescription>{blog?.content}</ItemDescription>
         </ItemContent>
       </ItemGroup>
     </div>
