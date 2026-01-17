@@ -10,7 +10,7 @@ import { createFileRoute } from "@tanstack/react-router";
 export const Route = createFileRoute("/$blogId")({
   component: RouteComponent,
   loader: async ({ params }) => {
-    return await getBlogById(Number(params.blogId));
+    return await getBlogById(params.blogId);
   },
   pendingComponent: () => <div>Loading blog data...</div>,
   errorComponent: () => <div>Error loading blog!</div>,
