@@ -1,6 +1,6 @@
 // Type the query function to return a Promise of the expected type
 
-interface BlogItemI {
+export interface BlogItemI {
   id: number;
   title: string;
   category: string[];
