@@ -6,6 +6,7 @@ import {
   ItemGroup,
   ItemTitle,
 } from "@/components/ui/item";
+import { Spinner } from "@/components/ui/spinner";
 import { createFileRoute } from "@tanstack/react-router";
 import { AlertCircleIcon } from "lucide-react";
 
@@ -14,7 +15,11 @@ export const Route = createFileRoute("/$blogId")({
   loader: async ({ params }) => {
     return await getBlogById(params.blogId);
   },
-  pendingComponent: () => <div>Loading blog data...</div>,
+  pendingComponent: () => (
+    <div className="flex items-center justify-center p-10 text-blue-600">
+      <Spinner />
+    </div>
+  ),
   errorComponent: ({ error }) => (
     <div>
       <Alert variant="destructive">

@@ -17,6 +17,7 @@ import {
   type BlogItemI,
 } from "@/api_service/blog.service";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Spinner } from "@/components/ui/spinner";
 
 // interface BlogListI {
 //   onItemClick?: (item: BlogItemI) => void;
@@ -51,7 +52,12 @@ const BlogList: React.FC = () => {
     mutation.mutate(item);
   }, []);
 
-  if (blogsLoading) return <p>Loading blogs...</p>;
+  if (blogsLoading)
+    return (
+      <div className="flex items-center justify-center p-10 text-blue-600">
+        <Spinner />
+      </div>
+    );
   if (blogsError instanceof Error)
     return (
       <Alert variant="destructive">
