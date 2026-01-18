@@ -9,13 +9,14 @@ import {
 import { Link, useNavigate } from "@tanstack/react-router";
 // import type { BlogItemI } from "@/api_service/blog.service";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { Trash2Icon } from "lucide-react";
+import { AlertCircleIcon, Trash2Icon } from "lucide-react";
 
 import {
   deleteBlog,
   getBlogLists,
   type BlogItemI,
 } from "@/api_service/blog.service";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
 // interface BlogListI {
 //   onItemClick?: (item: BlogItemI) => void;
@@ -51,7 +52,22 @@ const BlogList: React.FC = () => {
   }, []);
 
   if (blogsLoading) return <p>Loading blogs...</p>;
-  if (blogsError instanceof Error) return <p>Error: {blogsError.message}</p>;
+  if (blogsError instanceof Error)
+    return (
+      <Alert variant="destructive">
+        <AlertCircleIcon />
+        <AlertTitle>{blogsError.message}</AlertTitle>
+        <AlertDescription>
+          <p>Please verify the followings.</p>
+          <ul className="list-inside list-disc text-sm">
+            <li>Is your server is running</li>
+            <li>Internet Connection</li>
+            <li>Api endpoints</li>
+            <li>Check the domains</li>
+          </ul>
+        </AlertDescription>
+      </Alert>
+    );
 
   if (blogsSuccess) {
     return (

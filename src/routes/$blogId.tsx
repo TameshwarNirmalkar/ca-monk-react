@@ -1,4 +1,5 @@
 import { getBlogById } from "@/api_service/blog.service";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import {
   ItemContent,
   ItemDescription,
@@ -6,6 +7,7 @@ import {
   ItemTitle,
 } from "@/components/ui/item";
 import { createFileRoute } from "@tanstack/react-router";
+import { AlertCircleIcon } from "lucide-react";
 
 export const Route = createFileRoute("/$blogId")({
   component: RouteComponent,
@@ -13,7 +15,23 @@ export const Route = createFileRoute("/$blogId")({
     return await getBlogById(params.blogId);
   },
   pendingComponent: () => <div>Loading blog data...</div>,
-  errorComponent: () => <div>Error loading blog!</div>,
+  errorComponent: ({ error }) => (
+    <div>
+      <Alert variant="destructive">
+        <AlertCircleIcon />
+        <AlertTitle>{error.message}</AlertTitle>
+        <AlertDescription>
+          <p>Please verify the followings.</p>
+          <ul className="list-inside list-disc text-sm">
+            <li>Is your server is running</li>
+            <li>Internet Connection</li>
+            <li>Api endpoints</li>
+            <li>Check the domains</li>
+          </ul>
+        </AlertDescription>
+      </Alert>
+    </div>
+  ),
 });
 
 function RouteComponent() {
