@@ -1,11 +1,10 @@
 import "./App.css";
-import BlogWrapper from "./wraper_components/BlogWrapper";
 
 function App() {
   return (
     <>
       <div>
-        <BlogWrapper />
+        <h1>Hello, World!</h1>
       </div>
     </>
   );
